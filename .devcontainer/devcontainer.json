@@ -1,0 +1,19 @@
+{
+  "name": "Magento Development",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "web",
+  "workspaceFolder": "/var/www/html",
+  "extensions": [
+    "bmewburn.vscode-intelephense-client",
+    "felixfbecker.php-debug"
+  ],
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  },
+  "forwardPorts": [
+    80,
+    8082
+  ],
+  "postCreateCommand": "composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition .",
+  "shutdownAction": "stopCompose"
+}
