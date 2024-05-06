@@ -8,21 +8,9 @@ services:
     volumes:
       - ../src:/var/www/html
     environment:
-      - WEB_PHP_SOCKET=php-fpm:9000
-      - WEB_DOCUMENT_ROOT=/var/www/html/pub
+      - WEB_DOCUMENT_ROOT=/var/www/html
     ports:
       - "80:80"
-    depends_on:
-      - php-fpm
-      - db
-
-  php-fpm:
-    image: "webdevops/php-apache-dev:8.1"
-    container_name: magento-php-fpm
-    restart: unless-stopped
-    volumes:
-      - ../src:/var/www/html
-
   db:
     image: mariadb:10.4
     container_name: magento-db
@@ -33,7 +21,7 @@ services:
       MYSQL_USER: magento
       MYSQL_PASSWORD: magento
     ports:
-      - "3306:3306" # This line should be exactly like this to expose it on localhost
+      - "3306:3306"
     volumes:
       - db-data:/var/lib/mysql
 
@@ -44,11 +32,9 @@ services:
     depends_on:
       - db
     ports:
-      - "8082:80"
+      - "8080:80"
     environment:
       PMA_HOST: db
-      PMA_USER: root
-      PMA_PASSWORD: root
       UPLOAD_LIMIT: "2048M"
 
 volumes:

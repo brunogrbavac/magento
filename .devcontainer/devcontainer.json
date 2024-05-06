@@ -12,8 +12,8 @@
   },
   "forwardPorts": [
     80,
-    8082
+    8080
   ],
-  "postCreateCommand": "composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition .",
+   "postCreateCommand": "composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition .",
   "shutdownAction": "stopCompose"
 }
