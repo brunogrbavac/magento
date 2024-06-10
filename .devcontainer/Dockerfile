@@ -37,7 +37,7 @@ RUN tar -xzvf /var/www/html/2.4.7.tar.gz && \
 COPY magento-setup.sh /workspace/magento-setup.sh
 RUN chmod +x /workspace/magento-setup.sh
 
-EXPOSE 80
+EXPOSE 3000
 
 # CMD ["apache2ctl", "-D", "FOREGROUND"]
 COPY start.sh /usr/local/bin/

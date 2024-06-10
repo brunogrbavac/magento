@@ -25,9 +25,11 @@ su - www-data -s /bin/bash <<'EOF'
     composer install && \
     composer require elasticsearch/elasticsearch:^7.0 && \
     php bin/magento setup:install --base-url=http://localhost:3000/ --db-host=db --db-name=magento2 --db-user=meetanshi --db-password=password --admin-firstname=admin --admin-lastname=admin --admin-email=admin@admin.com --admin-user=admin --admin-password=admin123 --language=en_US --currency=USD --timezone=America/Chicago --use-rewrites=1 --backend-frontname=admin --search-engine=elasticsearch7 --elasticsearch-host=elasticsearch --elasticsearch-port=9200  && \
-    php bin/magento setup:store-config:set --base-url=http://localhost:3000/ && \
-    php bin/magento setup:store-config:set --base-url-secure=https://localhost:3000/ && \
-    php bin/magento maintenance:disable
+    php bin/magento setup:store-config:set --base-url=http://localhost/ && \
+    php bin/magento setup:store-config:set --base-url-secure=https://localhost/ && \
+    php bin/magento maintenance:disable && \
+    php bin/magento cache:clean && \
+    php bin/magento cache:flush
   else
     echo "Magento is already installed"
   fi
