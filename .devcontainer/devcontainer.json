@@ -1,19 +1,15 @@
 {
-  "name": "Magento Development",
+  "name": "Magento Dev Container",
   "dockerComposeFile": "docker-compose.yml",
   "service": "web",
-  "workspaceFolder": "/var/www/html",
+  "workspaceFolder": "/workspace",
+  "remoteUser": "root",
+  "settings": {},
   "extensions": [
-    "bmewburn.vscode-intelephense-client",
-    "felixfbecker.php-debug"
+    "ms-azuretools.vscode-docker",
+    "felixfbecker.php-intellisense",
+    "bmewburn.vscode-intelephense-client"
   ],
-  "settings": {
-    "terminal.integrated.shell.linux": "/bin/bash"
-  },
-  "forwardPorts": [
-    80,
-    8080
-  ],
-   "postCreateCommand": "composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition .",
-  "shutdownAction": "stopCompose"
+  "postCreateCommand": "chown -R vscode:vscode /workspace",
+  "postStartCommand": "/workspace/magento-setup.sh"
 }
